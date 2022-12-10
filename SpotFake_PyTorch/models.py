@@ -137,8 +137,8 @@ class LanguageAndVisionConcat(torch.nn.Module):
     ):
         super(LanguageAndVisionConcat, self).__init__()
         
-        self.text_encoder = TextEncoder(model_params['text_fc2_out'], model_params['text_fc1_out'], model_params['dropout_p'], model_params['fine_tune_text_module'])
-        self.vision_encode = VisionEncoder(model_params['img_fc1_out'], model_params['img_fc2_out'], model_params['dropout_p'], model_params['fine_tune_vis_module'])
+        self.language_module = TextEncoder(model_params['text_fc2_out'], model_params['text_fc1_out'], model_params['dropout_p'], model_params['fine_tune_text_module'])
+        self.vision_module = VisionEncoder(model_params['img_fc1_out'], model_params['img_fc2_out'], model_params['dropout_p'], model_params['fine_tune_vis_module'])
 
         self.fusion = torch.nn.Linear(
             in_features=(model_params['text_fc2_out'] + model_params['img_fc2_out']), 
